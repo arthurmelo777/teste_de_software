@@ -23,4 +23,4 @@ class Desconto:
         return self.desconto
 
     def aplicarDesconto(self):
-        return self.valor * (1-desconto)
+        return self.valor * (calculaDesconto())
