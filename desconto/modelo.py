@@ -1,26 +1,38 @@
 class Desconto:
-    def __init__(self, valor, idade):
-        self.valor = valor
-        self.idade = idade
-        self.desconto = 0
+    def __init__(self):
+        self._valor = 0
+        self._idade = 0
+        self._desconto = 0
 
-    def validarValor(self):
-        if (self.valor < 250.00):
+    def _validarValor(self, valor):
+        if (valor < 250.00):
             return False
         
         return True
 
-    def calculaDesconto(self):
-        if self.idade <= 12:
-            self.desconto = 0.15
-        elif self.idade <= 18:
-            self.desconto = 0.12
-        elif self.idade <= 21:
-            self.desconto = 0.05
-        elif self.idade <= 24:
-            self.desconto = 0.03
+    def _calculaDesconto(self, idade):
+        if idade >= 0:
+            if idade <= 12:
+                self._desconto = 0.15
+            elif idade <= 18:
+                self._desconto = 0.12
+            elif idade <= 21:
+                self._desconto = 0.05
+            elif idade <= 24:
+                self._desconto = 0.03
 
-        return self.desconto
+        return self._desconto
 
-    def aplicarDesconto(self):
-        return self.valor * (calculaDesconto())
+    def _definirDesconto(self, valor, idade):
+        return valor * (1 - self._calculaDesconto(idade))
+
+
+    def aplicarDesconto(self, valor, idade):
+        if self._validarValor(valor):
+            if self._calculaDesconto(idade):
+                valor_com_desconto = self._definirDesconto(valor, idade)
+                return valor_com_desconto
+            
+            return False
+            
+        return False
