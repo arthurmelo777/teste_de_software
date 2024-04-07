@@ -30,8 +30,7 @@ class Desconto:
     def aplicarDesconto(self, valor, idade):
         if self._validarValor(valor):
             if self._calculaDesconto(idade):
-                valor_com_desconto = self._definirDesconto(valor, idade)
-                return valor_com_desconto
+                return self._definirDesconto(valor, idade)
             
             return False
             

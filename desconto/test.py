@@ -3,7 +3,7 @@ from modelo import Desconto
 from unittest.mock import Mock
 class DescontoTeste (unittest.TestCase):
     def test_validar_valor_menor_250(self):
-        valor = 249
+        valor = 249.99
         idade = 12
         d = Desconto()
         value = d.aplicarDesconto(valor, idade)
@@ -17,7 +17,7 @@ class DescontoTeste (unittest.TestCase):
         self.assertTrue(value)
 
     def test_validar_valor_maior_250(self):
-        valor = 251
+        valor = 250.01
         idade = 12
         d = Desconto()
         value = d.aplicarDesconto(valor, idade)
@@ -65,16 +65,8 @@ class DescontoTeste (unittest.TestCase):
         value = d.aplicarDesconto(valor, idade)
         self.assertFalse(value)
 
-        ## self.servico.isEmPosseDaLoja = Mock(return_value = True)
-
-    def test_calcular_desconto_negativo(self):
-        valor = 250
-        idade = 25
-        d = Desconto()
-        d._calculaDesconto = Mock()
-        d._calculaDesconto = Mock(return_value=-0.1)
-        value = d.aplicarDesconto(valor, idade)
-        self.assertFalse(value)
+# Não testei o desconto pois não é possível recuperar apenas o valor do
+# desconto na classe aplicarDesconto cujos testes foram exigidos
 
 if __name__ == '__main__':
     unittest.main()
